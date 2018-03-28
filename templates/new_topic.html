@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ board.name }} - {{ block.super }}
+{% endblock %}
+
+<!-- markdown编辑器部分，默认第一个text area-->
+{% block stylesheet %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+{% endblock %}
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+{% endblock %}
+<!--markdown编辑器部分结束 -->
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'boards:home' %}">Boards</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'boards:board_topics' board.pk %}">{{ board.name }}</a></li>
+    <li class="breadcrumb-item">New topicpy</li>
+{% endblock %}
+
+{% block content %}
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+{#        {{ form.as_p }}#}
+{#        <div class="form-group">#}
+{#            <label for="id_subject">主题</label>#}
+{#            <input type="text" class="form-control" id="id_subject" name="subject">#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#            <label for="id_message">内容</label>#}
+{#            <textarea type="text" class="form-control" id="id_message" name="message" rows="5"></textarea>#}
+{#        </div>#}
+
+        <button type="submit" class="btn btn-success">提交</button>
+    </form>
+{% endblock %}
