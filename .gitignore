@@ -117,4 +117,5 @@ venv/
 #
 *.sqlite3
 
+# idea config
 .idea/
